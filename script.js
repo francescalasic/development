@@ -1,23 +1,28 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation links animation
+    // Navigation links handling - works for both internal and external links
     const navLinks = document.querySelectorAll('nav ul li a');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            window.scrollTo({
-                top: targetSection.offsetTop - 80,
-                behavior: 'smooth'
-            });
+            // Only handle smooth scroll for internal links (#)
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const targetSection = document.querySelector(this.getAttribute('href'));
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            // External links will follow normally
         });
     });
 
-    // Scroll animation
+    // Scroll animation for portfolio and service items
     const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.portfolio-item, .service-item');
+        const elements = document.querySelectorAll('.portfolio-item, .service-item, .competency-card');
         
         elements.forEach(element => {
             const elementPosition = element.getBoundingClientRect().top;
@@ -31,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Initialize animated elements
-    const animatedElements = document.querySelectorAll('.portfolio-item, .service-item');
+    const animatedElements = document.querySelectorAll('.portfolio-item, .service-item, .competency-card');
     animatedElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
@@ -40,21 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Initial call
-
-    // Contact form handling
-    const contactForm = document.getElementById('contact-form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you could add code to submit the form
-            // For example with fetch() or XMLHttpRequest
-            
-            alert('Thank you for your message! I will get back to you as soon as possible.');
-            this.reset();
-        });
-    }
 
     // Header color change on scroll
     const header = document.querySelector('header');
