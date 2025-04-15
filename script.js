@@ -44,19 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Initial call
 
-    // Header color change on scroll
-    const header = document.querySelector('header');
-
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 100) {
-            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        } else {
-            header.style.backgroundColor = '#2c3e50';
-            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        }
-    });
-
     // Toggle Read More Details
     const readMoreBtns = document.querySelectorAll('.read-more-btn');
 
