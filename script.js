@@ -44,17 +44,28 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Initial call
 
-    // Toggle Read More Details
-    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    // Modal Handling
+    const expandBtns = document.querySelectorAll('.expand-btn');
+    const modals = document.querySelectorAll('.modal');
 
-    readMoreBtns.forEach(button => {
+    expandBtns.forEach(button => {
         button.addEventListener('click', function () {
-            const details = button.previousElementSibling;
-            if (details.style.display === 'block') {
-                details.style.display = 'none';
-            } else {
-                details.style.display = 'block';
+            const modalId = this.getAttribute('data-target');
+            const modal = document.querySelector(modalId);
+            modal.style.display = 'block';
+        });
+    });
+
+    modals.forEach(modal => {
+        modal.addEventListener('click', function (event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
             }
+        });
+
+        const closeBtn = modal.querySelector('.close');
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
         });
     });
 });
