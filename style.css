@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 /* Baby Pink Color Palette */
@@ -21,6 +20,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-pink);
+    font-family: Arial, sans-serif;
 }
 
 header {
@@ -156,7 +156,7 @@ nav ul li a.active {
     margin-bottom: 10px;
 }
 
-.read-more-btn {
+.expand-btn {
     margin-top: 15px;
     padding: 12px 30px;
     background-color: var(--dark-pink);
@@ -168,15 +168,44 @@ nav ul li a.active {
     transition: all 0.3s;
 }
 
-.read-more-btn:hover {
+.expand-btn:hover {
     background-color: var(--medium-pink);
     transform: translateY(-3px);
 }
 
-/* Footer */
-footer {
-    background-color: var(--dark-pink);
-    color: var(--white);
-    text-align: center;
-    padding: 20px 0;
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    color: var(--dark-pink);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--medium-pink);
+    text-decoration: none;
+    cursor: pointer;
 }
