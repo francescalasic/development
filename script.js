@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation links handling - works for both internal and external links
+    // Navigation links handling - smooth scroll for internal links
     const navLinks = document.querySelectorAll('nav ul li a');
     
     navLinks.forEach(link => {
@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             }
-            // External links will follow normally
         });
     });
 
@@ -57,5 +56,24 @@ document.addEventListener('DOMContentLoaded', function() {
             header.style.backgroundColor = 'var(--white)';
             header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         }
+    });
+
+    // Function to toggle the visibility of details for each competency card
+    function toggleDetails(id) {
+        const details = document.getElementById(id);
+        if (details.style.display === "block") {
+            details.style.display = "none";
+        } else {
+            details.style.display = "block";
+        }
+    }
+
+    // Attach toggle function to buttons
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    readMoreBtns.forEach(button => {
+        button.addEventListener('click', function() {
+            const competencyId = button.previousElementSibling.id; // Get the id of the related competency-details
+            toggleDetails(competencyId);
+        });
     });
 });
